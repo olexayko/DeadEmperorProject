@@ -1,0 +1,18 @@
+[gd_resource type="Environment" load_steps=3 format=2]
+
+[sub_resource type="ProceduralSky" id=1]
+
+[sub_resource type="VisualScript" id=2]
+data = {
+"base_type": "Environment",
+"functions": [  ],
+"is_tool_script": false,
+"signals": [  ],
+"variables": [  ],
+"vs_unify": true
+}
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+script = SubResource( 2 )

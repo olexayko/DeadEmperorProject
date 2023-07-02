@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Locations/world.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/test_wall.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/test_bg.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/test_light.png" type="Texture" id=4]
+[ext_resource path="res://Locations/test_light.gd" type="Script" id=5]
+[ext_resource path="res://Characters/pause.gd" type="Script" id=6]
+[ext_resource path="res://Pickups/ammo_box.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Pickups/medkit.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Pickups/xp_sphere.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+
+[node name="world" type="Node2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="player" type="Node2D" parent="."]
+position = Vector2( 413, 241 )
+
+[node name="player_projectiles" type="Node2D" parent="."]
+
+[node name="wall" type="StaticBody2D" parent="."]
+position = Vector2( 528, 96 )
+z_index = -1
+
+[node name="sprite" type="Sprite" parent="wall"]
+z_index = 2
+texture = ExtResource( 2 )
+
+[node name="collision" type="CollisionShape2D" parent="wall"]
+shape = SubResource( 1 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="wall"]
+occluder = SubResource( 2 )
+
+[node name="test_bg" type="Sprite" parent="."]
+position = Vector2( 320, 180 )
+z_index = -5
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="test_light" type="Light2D" parent="."]
+position = Vector2( 608, 98 )
+scale = Vector2( 8.6849, 8.6849 )
+texture = ExtResource( 4 )
+energy = 0.85
+shadow_enabled = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_editor_description_": "q"
+}
+
+[node name="canvas_modulate" type="CanvasModulate" parent="."]
+color = Color( 0.658824, 0.658824, 0.658824, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ammo_box" parent="." instance=ExtResource( 7 )]
+position = Vector2( 208, 104 )
+
+[node name="ammo_box2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 160, 104 )
+
+[node name="ammo_box3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 184, 104 )
+
+[node name="medkit" parent="." instance=ExtResource( 8 )]
+position = Vector2( 208, 64 )
+
+[node name="medkit2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 160, 64 )
+
+[node name="medkit3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 184, 64 )
+
+[node name="medkit4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 320, 64 )
+
+[node name="medkit5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 320, 64 )
+
+[node name="pause_controller" type="Node2D" parent="."]
+pause_mode = 2
+script = ExtResource( 6 )
+
+[node name="xp_sphere" parent="." instance=ExtResource( 9 )]
+position = Vector2( 114, 194 )
+
+[node name="xp_sphere2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 200, 192 )
+
+[node name="xp_sphere3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 159, 279 )
+
+[node name="xp_sphere4" parent="." instance=ExtResource( 9 )]
+position = Vector2( 247, 230 )
+
+[node name="xp_sphere5" parent="." instance=ExtResource( 9 )]
+position = Vector2( 336, 244 )
+
+[node name="xp_sphere6" parent="." instance=ExtResource( 9 )]
+position = Vector2( 292, 315 )

@@ -1,0 +1,162 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Sprites/UI/stamina_bar_under.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/UI/hp_bar_icon_apathy.png" type="Texture" id=2]
+[ext_resource path="res://UI/hpbar.gd" type="Script" id=3]
+[ext_resource path="res://Sprites/UI/stamina_bar_progress.png" type="Texture" id=4]
+[ext_resource path="res://UI/stamina_bar.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/UI/hp_bar_over.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/UI/hp_bar_under.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/UI/hp_bar_progress_apathy.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/UI/xp_bar_progress.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/UI/xp_bar_under.png" type="Texture" id=10]
+[ext_resource path="res://UI/dev_label.gd" type="Script" id=11]
+[ext_resource path="res://Fonts/Negative_Impact_Font.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://Characters/reloading.gd" type="Script" id=13]
+[ext_resource path="res://Sprites/UI/bullet_indicator.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/UI/bullet_indicator_under.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/UI/bullet_indicator_empty_1.png" type="Texture" id=17]
+[ext_resource path="res://UI/xp_bar.gd" type="Script" id=18]
+[ext_resource path="res://UI/lvl.gd" type="Script" id=19]
+
+[sub_resource type="DynamicFont" id=1]
+size = 14
+extra_spacing_top = 2
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 14
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 12 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Default"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 14 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "NoAmmo"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 17 ) ]
+}
+
+[node name="UI" type="CanvasLayer"]
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="hp_bar" type="TextureProgress" parent="."]
+margin_left = 49.0
+margin_top = 14.0
+margin_right = 180.0
+margin_bottom = 32.0
+value = 100.0
+texture_under = ExtResource( 7 )
+texture_over = ExtResource( 6 )
+texture_progress = ExtResource( 8 )
+script = ExtResource( 3 )
+
+[node name="hp" type="Label" parent="hp_bar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "0/0"
+align = 1
+valign = 1
+
+[node name="xp_bar" type="TextureProgress" parent="."]
+margin_left = 49.0
+margin_top = 29.0
+margin_right = 180.0
+margin_bottom = 39.0
+value = 50.0
+texture_under = ExtResource( 10 )
+texture_progress = ExtResource( 9 )
+script = ExtResource( 18 )
+
+[node name="lvl_box" type="Sprite" parent="."]
+position = Vector2( 31, 26 )
+texture = ExtResource( 2 )
+
+[node name="lvl" type="Label" parent="lvl_box"]
+anchor_left = -0.271
+anchor_top = -0.146
+anchor_right = -0.271
+anchor_bottom = -0.146
+margin_left = -0.992001
+margin_top = -0.992
+margin_right = 28.008
+margin_bottom = 17.008
+custom_fonts/font = SubResource( 2 )
+text = "0"
+align = 1
+valign = 1
+script = ExtResource( 19 )
+
+[node name="stamina_bar" type="TextureProgress" parent="."]
+visible = false
+margin_left = 26.0
+margin_top = 326.0
+margin_right = 157.0
+margin_bottom = 336.0
+value = 100.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 4 )
+script = ExtResource( 5 )
+
+[node name="stamina" type="Label" parent="stamina_bar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 3.0
+align = 1
+valign = 1
+
+[node name="dev_label" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 64.0
+margin_right = 64.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 3 )
+script = ExtResource( 11 )
+
+[node name="reloading" type="TextureProgress" parent="."]
+visible = false
+margin_left = 290.0
+margin_top = 154.0
+margin_right = 306.0
+margin_bottom = 170.0
+value = 100.0
+texture_over = ExtResource( 14 )
+texture_progress = ExtResource( 15 )
+fill_mode = 4
+script = ExtResource( 13 )
+
+[node name="animation" type="AnimationPlayer" parent="reloading"]
+method_call_mode = 1
+anims/Default = SubResource( 4 )
+anims/NoAmmo = SubResource( 5 )

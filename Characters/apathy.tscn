@@ -1,0 +1,710 @@
+[gd_scene load_steps=34 format=2]
+
+[ext_resource path="res://Sprites/Characters/apathy_head.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Characters/apathy_body_top.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Effects/shadow.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Characters/apathy_body_down.png" type="Texture" id=4]
+[ext_resource path="res://Characters/apathy.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/Characters/apathy_gun_hand.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Characters/apathy_inactive_hand.png" type="Texture" id=7]
+
+[sub_resource type="CircleShape2D" id=23]
+radius = 7.51665
+
+[sub_resource type="Animation" id=5]
+resource_name = "Idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body_top:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body_down:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Running"
+length = 0.8
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 2, 0, 1, 0, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body_top:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 0, 1, 2, 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body_down:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 8, 1, 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "RunningBackwards"
+length = 0.8
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 0, 1, 0, 2, 0, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body_top:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 3, 2, 1, 0, 3, 2, 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body_down:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 4, 3, 2, 1, 8, 7, 6 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Sliding"
+length = 0.01
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body_top:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body_down:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "SlidingTransition"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body_top:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body_down:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 9 ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "Walking"
+length = 1.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 5, 0, 6, 0, 5, 0, 6 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body_top:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 7, 2, 8, 0, 7, 2, 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body_down:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 12, 1, 2, 3, 11 ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "WalkingBackwards"
+length = 1.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 6, 0, 5, 0, 6, 0, 5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body_top:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 8, 2, 7, 0, 8, 2, 7 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("body_down:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 11, 3, 2, 1, 12, 7, 6 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("inactive_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 0, 5 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "Running"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("inactive_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1, 0, 4 ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "RunningBackwards"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("inactive_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4, 0, 1, 2, 3, 2, 1 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Sliding"
+length = 0.01
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("inactive_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.75 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 7, 6 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "SlidingTransition"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("inactive_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "Walking"
+length = 1.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("inactive_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1, 0, 4 ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "WalkingBackwards"
+length = 1.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("inactive_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4, 0, 1, 2, 3, 2, 1 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "GunIdle"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("gun_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Idle"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("gun_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 5 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "Running"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("gun_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1, 0, 4 ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "RunningBackwards"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("gun_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4, 0, 1, 2, 3, 2, 1 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "Shooting"
+length = 0.17
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("gun_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 8, 9, 10, 6 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "Sliding"
+length = 0.01
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("gun_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.75 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 7, 6 ]
+}
+
+[sub_resource type="Animation" id=17]
+resource_name = "SlidingTransition"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("gun_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=28]
+resource_name = "Walking"
+length = 1.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("gun_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 2, 1, 0, 4 ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "WalkingBackwards"
+length = 1.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("gun_hand:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4, 0, 1, 2, 3, 2, 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7, 6 )
+
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 7, 6 )
+
+[node name="apathy" type="KinematicBody2D"]
+z_index = 100
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ],
+"_editor_description_": ""
+}
+current_speed = 2.0
+shooting_mode_delay = 0.3
+shoot_mode_decreasing_multiplier = 5.0
+hp = 5.0
+max_hp = 5.0
+slide_cooldown = 0.3
+slide_time = 0.75
+slide_min_speed_multiplier = 1.25
+slide_max_speed_multiplier = 2.75
+
+[node name="shooting_mode" type="Timer" parent="."]
+one_shot = true
+
+[node name="slide_cooldown" type="Timer" parent="."]
+wait_time = 100.0
+one_shot = true
+autostart = true
+
+[node name="hurt_cooldown" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+autostart = true
+
+[node name="slide_speed_curve" type="Tween" parent="."]
+
+[node name="head" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 7
+
+[node name="body_top" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 9
+
+[node name="body_down" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+hframes = 13
+
+[node name="inactive_hand" type="Sprite" parent="."]
+texture = ExtResource( 7 )
+hframes = 8
+frame = 5
+
+[node name="gun_hand" type="Sprite" parent="."]
+position = Vector2( 14.5, 9.5 )
+rotation = 6.28319
+z_index = 1
+texture = ExtResource( 6 )
+offset = Vector2( -14.5, -9.5 )
+hframes = 11
+frame = 6
+
+[node name="weapon" type="Node2D" parent="gun_hand"]
+position = Vector2( 0, 3.8147e-06 )
+
+[node name="Area2D" type="Area2D" parent="gun_hand"]
+position = Vector2( -14.5, -9.49994 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gun_hand/Area2D"]
+visible = false
+position = Vector2( 14.5, 9.5 )
+shape = SubResource( 23 )
+disabled = true
+
+[node name="shadow" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.313726 )
+position = Vector2( 0, -1.90735e-06 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="body_animation" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 5 )
+anims/Running = SubResource( 3 )
+anims/RunningBackwards = SubResource( 20 )
+anims/Sliding = SubResource( 4 )
+anims/SlidingTransition = SubResource( 15 )
+anims/Walking = SubResource( 24 )
+anims/WalkingBackwards = SubResource( 25 )
+
+[node name="inactive_hand_animation" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 6 )
+anims/Running = SubResource( 7 )
+anims/RunningBackwards = SubResource( 21 )
+anims/Sliding = SubResource( 8 )
+anims/SlidingTransition = SubResource( 16 )
+anims/Walking = SubResource( 26 )
+anims/WalkingBackwards = SubResource( 27 )
+
+[node name="gun_hand_animation" type="AnimationPlayer" parent="."]
+anims/GunIdle = SubResource( 14 )
+anims/Idle = SubResource( 9 )
+anims/Running = SubResource( 10 )
+anims/RunningBackwards = SubResource( 22 )
+anims/Shooting = SubResource( 12 )
+anims/Sliding = SubResource( 11 )
+anims/SlidingTransition = SubResource( 17 )
+anims/Walking = SubResource( 28 )
+anims/WalkingBackwards = SubResource( 29 )
+
+[node name="camera" type="Camera2D" parent="."]
+current = true
+
+[node name="collision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 10 )
+z_index = 1
+shape = SubResource( 2 )
+
+[node name="legs" type="Area2D" parent="."]
+position = Vector2( 0, 12 )
+
+[node name="collision" type="CollisionShape2D" parent="legs"]
+position = Vector2( 0, -2 )
+shape = SubResource( 30 )
+
+[node name="hurtbox" type="Area2D" parent="."]
+
+[node name="area" type="CollisionPolygon2D" parent="hurtbox"]
+polygon = PoolVector2Array( -14, -16, -14, -16, -14, 4, -7, 4, -7, 16, 7, 16, 7, 4, 14, 4, 14, -16 )
